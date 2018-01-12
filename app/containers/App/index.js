@@ -22,25 +22,25 @@ import Drawer from 'material-ui/Drawer';
 import Hidden from 'material-ui/Hidden';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-// import ExpandLess from 'material-ui-icons/ExpandLess';
-// import ExpandMore from 'material-ui-icons/ExpandMore';
+import ExpandLess from 'material-ui-icons/ExpandLess';
+import ExpandMore from 'material-ui-icons/ExpandMore';
 // import StarBorder from 'material-ui-icons/StarBorder';
-import { OpenInNew } from 'mdi-material-ui';
 // import { GithubCircle } from 'mdi-material-ui';
-// import Collapse from 'material-ui/transitions/Collapse';
+import Collapse from 'material-ui/transitions/Collapse';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
-import MenuList from 'material-ui/Menu/MenuList';
+// import MenuList from 'material-ui/Menu/MenuList';
 import IconButton from 'material-ui/IconButton';
-import List, { ListItemIcon, ListItemText } from 'material-ui/List';
+// import List, { ListItemIcon, ListItemText, ListItem } from 'material-ui/List';
+import List, { ListItemText, ListItem } from 'material-ui/List';
 // import InboxIcon from 'material-ui-icons/MoveToInbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
 // import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
+import deepOrange from 'material-ui/colors/deepOrange';
 import red from 'material-ui/colors/red';
 // import StarIcon from 'material-ui-icons/Star';
-import SendIcon from 'material-ui-icons/Send';
+// import SendIcon from 'material-ui-icons/Send';
 // import MailIcon from 'material-ui-icons/Mail';
 // import LocaleToggle from 'containers/LocaleToggle';
 import Footer from 'components/Footer';
@@ -50,10 +50,17 @@ import MenuItem from 'material-ui/es/Menu/MenuItem';
 import messages from './messages';
 
 const AppWrapper = styled.div`
+  // position: relative;
+  // margin: 0;
+  // padding-bottom: 6rem;
+  // min-height: 100%;
+  // box-sizing: border-box;
+  // margin-bottom: -100px;
+  // height: 100vh;
   // max-width: calc(768px + 16px * 2);
   // margin: 0 auto;
   // display: flex;
-  // min-height: 100%;
+  // min-height: 10%;
   // padding: 0 16px;
   // flex-direction: column;
 `;
@@ -61,10 +68,11 @@ const AppWrapper = styled.div`
 const theme = createMuiTheme({
   palette: {
     primary: green,
-    secondary: {
-      ...green,
-      A400: '#00E677',
-    },
+    secondary: deepOrange,
+    // secondary: {
+    //   ...green,
+    //   A400: '#00E677',
+    // },
     error: red,
     // type: 'light', // Switching the dark mode on is a single property value change.
     // type: 'dark', // Switching the dark mode on is a single property value change.
@@ -94,16 +102,21 @@ const styles = {
   },
   root: {
     width: '100%',
-    // height: 430,
+    height: '100%',
+    // minHeight: 'calc(100% - 90px)',
+    // flex: '1 0 auto',
     // marginTop: theme.spacing.unit * 3,
     // zIndex: 1,//
-    overflow: 'hidden',
+    // overflow: 'hidden',
   },
   appFrame: {
+    minHeight: 'calc(100% - 0px)',
+    flexDirection: 'column',
     position: 'relative',
     display: 'flex',
     width: '100%',
     height: '100%',
+    // height: 800,
   },
   appBar: {
     position: 'fixed',
@@ -118,6 +131,14 @@ const styles = {
     },
   },
   drawerHeader: theme.mixins.toolbar,
+  drawerHeaderInner: {
+    paddingTop: '6%',
+    paddingBottom: '6%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    textAlign: 'center',
+    backgroundColor: theme.palette.background.default,
+  },
   drawerPaper: {
     width: 250,
     [theme.breakpoints.up('md')]: {
@@ -128,14 +149,21 @@ const styles = {
     height: '100%',
   },
   innerContent: {
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit,
+    flex: 1,
   },
   content: {
+    display: 'flex',
+    minHeight: '100vh',
+    flexDirection: 'column',
     backgroundColor: theme.palette.background.default,
     width: '100%',
     // padding: theme.spacing.unit * 3,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
+    // minHeight: 'calc(100% - 56px)',
+    // height: 'calc(100% - 56px)',
+    height: '100%',
+    // marginTop: 56,
+    paddingTop: 56,
     // position: 'relative',
     // marginLeft: drawerWidth,
     [theme.breakpoints.up('md')]: {
@@ -159,7 +187,7 @@ const styles = {
     // },
   },
   nested: {
-    paddingLeft: theme.spacing.unit,
+    paddingLeft: 5 * theme.spacing.unit,
   },
 };
 
@@ -197,61 +225,98 @@ class App extends React.Component {
   };
 
   render() {
-    const { classes, location, intl } = this.props;
-    const { formatMessage } = intl;
+    const { classes, location } = this.props;
+    // const { classes, location, intl } = this.props;
+    // const { formatMessage } = intl;
 
     const internalLinkButtons = (
       <div>
-        <MenuList>
+        <List dense>
           <MenuItem button selected={location.pathname === '/'} component={NavLink} to="/" onClick={this.handleDrawerToggle}>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <ListItemText primary={formatMessage(messages.drawerHome)} />
+            {/* <ListItemIcon> */}
+            {/* <SendIcon /> */}
+            {/* </ListItemIcon> */}
+            <ListItemText
+              disableTypography
+              primary={
+                <Typography type="body2">
+                  Home
+                 </Typography>
+              }
+            />
           </MenuItem>
-          <MenuItem button selected={location.pathname === '/features'} component={NavLink} to="/features" onClick={this.handleDrawerToggle}>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary={formatMessage(messages.drawerFeatures)} />
-          </MenuItem>
-        </MenuList>
+          <ListItem button onClick={this.handleClick}>
+            {/* <ListItemIcon> */}
+            {/* <InboxIcon /> */}
+            {/* </ListItemIcon> */}
+            {/* <ListItemText primary="Research" /> */}
+            <ListItemText
+              disableTypography
+              primary={
+                <Typography type="body2">
+                  Research
+                 </Typography>
+              }
+            />
+            {this.state.subMenusOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse component="li" in={this.state.subMenusOpen} timeout="auto" unmountOnExit>
+            <MenuItem button className={classes.nested} selected={location.pathname === '/features'} component={NavLink} to="/features" onClick={this.handleDrawerToggle}>
+              {/* <ListItemText inset primary="Video Coding Optimizations" /> */}
+              {/* <ListItemText primary="Video Coding Optimizations Video Coding Optimizations Video Coding Optimizations" /> */}
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography type="body1" noWrap>
+                    Video Coding Optimizations
+                   </Typography>
+                }
+              />
+            </MenuItem>
+          </Collapse>
+        </List>
       </div>
     );
 
     const externalLinkButtons = (
       <div>
-        {/* collapse example, kept here for future reference */}
         {/* <List> */}
         {/* <ListItem button onClick={this.handleClick}> */}
         {/* <ListItemIcon> */}
         {/* <InboxIcon /> */}
         {/* </ListItemIcon> */}
-        {/* <ListItemText inset primary={formatMessage(messages.externalLinks)} /> */}
+        {/* <ListItemText inset primary="Research" /> */}
         {/* {this.state.subMenusOpen ? <ExpandLess /> : <ExpandMore />} */}
         {/* </ListItem> */}
         {/* <Collapse component="li" in={this.state.subMenusOpen} timeout="auto" unmountOnExit> */}
-        {/* <List disablePadding> */}
-        {/* <ListItem button className={classes.nested} component="a" href="https://git.io/wzx" target="_blank" onClick={this.handleDrawerToggle}> */}
-        {/* <ListItemText inset primary="Résumé" /> */}
-        {/* </ListItem> */}
-        {/* </List> */}
+        {/* <MenuItem button className={classes.nested} selected={location.pathname === '/features'} component={NavLink} to="/features" onClick={this.handleDrawerToggle}> */}
+        {/* <ListItemText inset primary={formatMessage(messages.drawerFeatures)} /> */}
+        {/* </MenuItem> */}
         {/* </Collapse> */}
         {/* </List> */}
-        <MenuList>
-          <MenuItem button component="a" href="https://git.io/wzx" target="_blank" onClick={this.handleDrawerToggle}>
-            <ListItemIcon>
-              <OpenInNew />
-            </ListItemIcon>
-            <ListItemText primary={formatMessage(messages.resumeLink)} />
-          </MenuItem>
-        </MenuList>
+        {/* <MenuList> */}
+        {/* <MenuItem button component="a" href="https://git.io/wzx" target="_blank" onClick={this.handleDrawerToggle}> */}
+        {/* <ListItemIcon> */}
+        {/* <OpenInNew /> */}
+        {/* </ListItemIcon> */}
+        {/* <ListItemText primary={formatMessage(messages.resumeLink)} /> */}
+        {/* </MenuItem> */}
+        {/* </MenuList> */}
       </div>
     );
 
     const drawer = (
       <div>
-        <div className={classes.drawerHeader} />
+        <div className={classes.drawerHeader} >
+          <div className={classes.drawerHeaderInner}>
+            <Typography type="display1" style={{ fontSize: '20px' }}>
+              Prof.Sam KWONG&#39;s
+            </Typography>
+            <Typography type="display1" style={{ fontSize: '20px' }}>
+              Research Group
+            </Typography>
+          </div>
+        </div>
         <Divider />
         <List>{internalLinkButtons}</List>
         <Divider />
@@ -333,7 +398,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   location: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired,
 };
