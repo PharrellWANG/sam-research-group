@@ -150,12 +150,17 @@ const styles = {
   },
   innerContent: {
     padding: theme.spacing.unit,
+    // Those two parts made sticky footer but not fixed !!
+    // !!!! 1.1 sticky footer !!!!
     flex: 1,
+    // !!!! 1.2 sticky footer !!!!
   },
   content: {
+    // !!!! 2.1 sticky footer !!!!
     display: 'flex',
     minHeight: '100vh',
     flexDirection: 'column',
+    // !!!! 2.2 sticky footer !!!!
     backgroundColor: theme.palette.background.default,
     width: '100%',
     // padding: theme.spacing.unit * 3,
