@@ -56,7 +56,7 @@ export class ResearchTile extends React.Component { // eslint-disable-line react
             <img className={classes.imageAutoScale} src={imageSrc} alt={imageAlt} />
           </Grid>
           <Grid item xs={12} sm={8}>
-            {publications.map((name, index) => (<div className={classes.indentRow}>
+            {publications.map((name, index) => (<div className={classes.indentRow} key={name}>
               <Typography type="body1" gutterBottom>
                 {index + 1}.&nbsp;&nbsp;
               </Typography>

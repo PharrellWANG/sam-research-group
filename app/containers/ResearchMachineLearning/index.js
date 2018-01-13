@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji,react/prop-types */
 /*
- * ResearchMachineLearning
+ * ResearchVideoCodingPage
  *
  * List all the features
  */
@@ -17,12 +17,12 @@ import Paper from 'material-ui/es/Paper/Paper';
 import PageSubTitle from 'components/PageSubTitle';
 // import Divider from 'material-ui/Divider';
 import ResearchTile from 'components/ResearchTile';
-import gameTheoretic from './game-theoretic-based.png';
-import windowLevel from './windowLevel.jpg';
-import statModelBased from './statisticall-model-based.png';
-import RateDistortionBitAllocation from './rate-distortion-bit-allocation.png';
-import OptimalStopping from './optimal-stopping.png';
-import statModelBasedFastAlgorithm from './stat-model-based-fast-algorithm.png';
+import gameTheoretic from '../ResearchVideoCodingPage/game-theoretic-based.png';
+import windowLevel from '../ResearchVideoCodingPage/windowLevel.jpg';
+import statModelBased from '../ResearchVideoCodingPage/statisticall-model-based.png';
+import RateDistortionBitAllocation from '../ResearchVideoCodingPage/rate-distortion-bit-allocation.png';
+import OptimalStopping from '../ResearchVideoCodingPage/optimal-stopping.png';
+import statModelBasedFastAlgorithm from '../ResearchVideoCodingPage/stat-model-based-fast-algorithm.png';
 
 const styles = (theme) => ({
   root: theme.mixins.gutters({
@@ -46,7 +46,7 @@ const styles = (theme) => ({
   },
 });
 
-export class ResearchMachineLearning extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class ResearchVideoCodingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { classes } = this.props;
     return (
@@ -197,4 +197,4 @@ export class ResearchMachineLearning extends React.Component { // eslint-disable
   }
 }
 
-export default withStyles(styles)(ResearchMachineLearning);
+export default withStyles(styles)(ResearchVideoCodingPage);

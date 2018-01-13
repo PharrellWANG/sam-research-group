@@ -15,6 +15,7 @@ import { Switch, Route, NavLink, withRouter, Link } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, withStyles, withTheme } from 'material-ui/styles';
 import HomePage from 'containers/HomePage/Loadable';
 import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
+import ResearchMachineLearning from 'containers/ResearchMachineLearning/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 // import Header from 'components/Header';
 import { injectIntl } from 'react-intl';
@@ -209,6 +210,8 @@ class App extends React.Component {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
     } else if (this.props.location.pathname === '/research-video-coding') {
       this.setState({ title: 'Research' });
+    } else if (this.props.location.pathname === '/research-machine-learning') {
+      this.setState({ title: 'Research' });
     }
   }
 
@@ -217,6 +220,8 @@ class App extends React.Component {
     if (nextProps.location.pathname === '/') {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
     } else if (nextProps.location.pathname === '/research-video-coding') {
+      this.setState({ title: 'Research' });
+    } else if (this.props.location.pathname === '/research-machine-learning') {
       this.setState({ title: 'Research' });
     }
   }
@@ -238,9 +243,6 @@ class App extends React.Component {
       <div>
         <List dense>
           <MenuItem button selected={location.pathname === '/'} component={NavLink} to="/" onClick={this.handleDrawerToggle}>
-            {/* <ListItemIcon> */}
-            {/* <SendIcon /> */}
-            {/* </ListItemIcon> */}
             <ListItemText
               disableTypography
               primary={
@@ -251,10 +253,6 @@ class App extends React.Component {
             />
           </MenuItem>
           <ListItem button onClick={this.handleClick}>
-            {/* <ListItemIcon> */}
-            {/* <InboxIcon /> */}
-            {/* </ListItemIcon> */}
-            {/* <ListItemText primary="Research" /> */}
             <ListItemText
               disableTypography
               primary={
@@ -267,13 +265,21 @@ class App extends React.Component {
           </ListItem>
           <Collapse component="li" in={this.state.subMenusOpen} timeout="auto" unmountOnExit>
             <MenuItem button className={classes.nested} selected={location.pathname === '/research-video-coding'} component={NavLink} to="/research-video-coding" onClick={this.handleDrawerToggle}>
-              {/* <ListItemText inset primary="Video Coding Optimizations" /> */}
-              {/* <ListItemText primary="Video Coding Optimizations Video Coding Optimizations Video Coding Optimizations" /> */}
               <ListItemText
                 disableTypography
                 primary={
                   <Typography type="body1" noWrap>
                     Video Coding Optimizations
+                   </Typography>
+                }
+              />
+            </MenuItem>
+            <MenuItem button className={classes.nested} selected={location.pathname === '/research-machine-learning'} component={NavLink} to="/research-machine-learning" onClick={this.handleDrawerToggle}>
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography type="body1" noWrap>
+                    Pattern Recognition and Machine Learning
                    </Typography>
                 }
               />
@@ -391,6 +397,7 @@ class App extends React.Component {
                   <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/research-video-coding" component={ResearchVideoCodingPage} />
+                    <Route path="/research-machine-learning" component={ResearchMachineLearning} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>
