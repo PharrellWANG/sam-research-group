@@ -1,0 +1,31 @@
+/* eslint-disable jsx-a11y/accessible-emoji,react/prop-types */
+import React from 'react';
+import withStyles from 'material-ui/es/styles/withStyles';
+import Typography from 'material-ui/es/Typography/Typography';
+import Divider from 'material-ui/Divider';
+
+
+const styles = (theme) => ({
+  root: theme.mixins.gutters({
+    paddingTop: 18,
+  }),
+  borderBottom: {
+    borderBottom: '1px solid #666',
+  },
+});
+
+export class PageSubTitle extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    const { classes, title } = this.props;
+    return (
+      <div>
+        <Typography type="display1" component="h3" gutterBottom className={classes.root}>
+          {title}
+        </Typography>
+        <Divider />
+      </div>
+    );
+  }
+}
+
+export default withStyles(styles)(PageSubTitle);

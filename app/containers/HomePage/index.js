@@ -24,7 +24,8 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import samCsDepartment from './sam-cs.png';
+// import samCsDepartment from './sam-cs.png';
+import samCsDepartment from './cityu-cs.png';
 
 const styles = (theme) => ({
   root: theme.mixins.gutters({
@@ -55,16 +56,21 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         <div>
           <Paper className={classes.root} elevation={4}>
             <Grid container spacing={24}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <img className={classes.imageAutoScale} src={samCsDepartment} alt="Sam - Department of Computer Science" />
               </Grid>
             </Grid>
-            <Typography type="headline" component="h3">
-              Welcome to Our Research Group <span>🙂</span>
-            </Typography>
-            <Typography component="p">
-              Our group mainly focuses on the video coding optimization, pattern recognition and machine learning, and evolutionary computation algorithms.
-            </Typography>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <Typography type="headline" gutterBottom>
+                  Welcome to Our Research Group <span>🎉</span>
+                </Typography>
+                <Typography type="body2" gutterBottom>
+                  Our group mainly focuses on the video coding optimization, pattern recognition and machine learning,
+                  and evolutionary computation algorithms.
+                </Typography>
+              </Grid>
+            </Grid>
           </Paper>
         </div>
       </article>

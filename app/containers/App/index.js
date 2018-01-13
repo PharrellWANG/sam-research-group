@@ -11,10 +11,10 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import Reboot from 'material-ui/Reboot';
 // import { matchPath } from 'react-router';
-import { Switch, Route, NavLink, withRouter } from 'react-router-dom';
+import { Switch, Route, NavLink, withRouter, Link } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, withStyles, withTheme } from 'material-ui/styles';
 import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
+import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 // import Header from 'components/Header';
 import { injectIntl } from 'react-intl';
@@ -37,7 +37,7 @@ import List, { ListItemText, ListItem } from 'material-ui/List';
 // import InboxIcon from 'material-ui-icons/MoveToInbox';
 // import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
-import deepOrange from 'material-ui/colors/deepOrange';
+import pink from 'material-ui/colors/pink';
 import red from 'material-ui/colors/red';
 // import StarIcon from 'material-ui-icons/Star';
 // import SendIcon from 'material-ui-icons/Send';
@@ -68,7 +68,7 @@ const AppWrapper = styled.div`
 const theme = createMuiTheme({
   palette: {
     primary: green,
-    secondary: deepOrange,
+    secondary: pink,
     // secondary: {
     //   ...green,
     //   A400: '#00E677',
@@ -149,7 +149,7 @@ const styles = {
     height: '100%',
   },
   innerContent: {
-    padding: theme.spacing.unit,
+    padding: 0.5 * theme.spacing.unit,
     // Those two parts made sticky footer but not fixed !!
     // !!!! 1.1 sticky footer !!!!
     flex: 1,
@@ -207,8 +207,8 @@ class App extends React.Component {
   componentWillMount() {
     if (this.props.location.pathname === '/') {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
-    } else if (this.props.location.pathname === '/features') {
-      this.setState({ title: this.props.intl.formatMessage(messages.drawerFeatures) });
+    } else if (this.props.location.pathname === '/research-video-coding') {
+      this.setState({ title: 'Research' });
     }
   }
 
@@ -216,8 +216,8 @@ class App extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname === '/') {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
-    } else if (nextProps.location.pathname === '/features') {
-      this.setState({ title: this.props.intl.formatMessage(messages.drawerFeatures) });
+    } else if (nextProps.location.pathname === '/research-video-coding') {
+      this.setState({ title: 'Research' });
     }
   }
 
@@ -266,7 +266,7 @@ class App extends React.Component {
             {this.state.subMenusOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse component="li" in={this.state.subMenusOpen} timeout="auto" unmountOnExit>
-            <MenuItem button className={classes.nested} selected={location.pathname === '/features'} component={NavLink} to="/features" onClick={this.handleDrawerToggle}>
+            <MenuItem button className={classes.nested} selected={location.pathname === '/research-video-coding'} component={NavLink} to="/research-video-coding" onClick={this.handleDrawerToggle}>
               {/* <ListItemText inset primary="Video Coding Optimizations" /> */}
               {/* <ListItemText primary="Video Coding Optimizations Video Coding Optimizations Video Coding Optimizations" /> */}
               <ListItemText
@@ -313,14 +313,16 @@ class App extends React.Component {
     const drawer = (
       <div>
         <div className={classes.drawerHeader} >
-          <div className={classes.drawerHeaderInner}>
-            <Typography type="display1" style={{ fontSize: '20px' }}>
+          <Link to="/" style={{ textDecoration: 'none' }} onClick={this.handleDrawerToggle}>
+            <div className={classes.drawerHeaderInner}>
+              <Typography type="display1" style={{ fontSize: '20px' }}>
               Prof.Sam KWONG&#39;s
             </Typography>
-            <Typography type="display1" style={{ fontSize: '20px' }}>
+              <Typography type="display1" style={{ fontSize: '20px' }}>
               Research Group
             </Typography>
-          </div>
+            </div>
+          </Link>
         </div>
         <Divider />
         <List>{internalLinkButtons}</List>
@@ -388,7 +390,7 @@ class App extends React.Component {
                 <div className={classes.innerContent}>
                   <Switch>
                     <Route exact path="/" component={HomePage} />
-                    <Route path="/features" component={FeaturePage} />
+                    <Route path="/research-video-coding" component={ResearchVideoCodingPage} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>
