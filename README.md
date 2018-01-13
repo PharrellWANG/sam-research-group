@@ -1,7 +1,10 @@
 # Note:
 
-For *react-router-hash-link* to bhe able to scroll with offsets when the header is sticky:
-After ``yarn``, In ``/lib/index.js`` after ``element.scrollIntoView();`` add:
+For *react-router-hash-link* to be able to scroll with offsets when the header is sticky:
+
+After ``yarn``, in ``/lib/index.js``, 
+
+right after ``element.scrollIntoView();`` add:
 
 ```javascript
 var scrolledY = window.scrollY;
