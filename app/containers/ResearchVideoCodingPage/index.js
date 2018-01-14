@@ -9,11 +9,11 @@ import { Helmet } from 'react-helmet';
 
 // import Paper from 'material-ui/es/Paper/Paper';
 import { HashLink } from 'react-router-hash-link';
-import withStyles from 'material-ui/es/styles/withStyles';
-import Grid from 'material-ui/es/Grid/Grid';
-import Divider from 'material-ui/es/Divider';
-import Typography from 'material-ui/es/Typography/Typography';
-import Paper from 'material-ui/es/Paper/Paper';
+import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
 import PageSubTitle from 'components/PageSubTitle';
 // import Divider from 'material-ui/Divider';
 import ResearchTile from 'components/ResearchTile';

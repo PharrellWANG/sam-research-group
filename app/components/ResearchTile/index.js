@@ -1,8 +1,8 @@
 
 /* eslint-disable jsx-a11y/accessible-emoji,react/prop-types */
 import React from 'react';
-import withStyles from 'material-ui/es/styles/withStyles';
-import Typography from 'material-ui/es/Typography/Typography';
+import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 

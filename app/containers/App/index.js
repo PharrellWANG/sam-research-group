@@ -15,7 +15,7 @@ import { Switch, Route, NavLink, withRouter, Link } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, withStyles, withTheme } from 'material-ui/styles';
 import HomePage from 'containers/HomePage/Loadable';
 import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
-import ResearchMachineLearning from 'containers/ResearchMachineLearning/Loadable';
+// import ResearchMachineLearning from 'containers/ResearchMachineLearning/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 // import Header from 'components/Header';
 import { injectIntl } from 'react-intl';
@@ -31,10 +31,11 @@ import Collapse from 'material-ui/transitions/Collapse';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
+import { MenuList, MenuItem } from 'material-ui/Menu';
+import { ListItemText, ListItem } from 'material-ui/List';
 // import MenuList from 'material-ui/Menu/MenuList';
 import IconButton from 'material-ui/IconButton';
 // import List, { ListItemIcon, ListItemText, ListItem } from 'material-ui/List';
-import List, { ListItemText, ListItem } from 'material-ui/List';
 // import InboxIcon from 'material-ui-icons/MoveToInbox';
 // import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
@@ -47,7 +48,7 @@ import red from 'material-ui/colors/red';
 import Footer from 'components/Footer';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import MenuItem from 'material-ui/es/Menu/MenuItem';
+// import MenuItem from 'material-ui/es/Menu/MenuItem';
 import messages from './messages';
 
 const AppWrapper = styled.div`
@@ -210,8 +211,6 @@ class App extends React.Component {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
     } else if (this.props.location.pathname === '/research-video-coding') {
       this.setState({ title: 'Research' });
-    } else if (this.props.location.pathname === '/research-machine-learning') {
-      this.setState({ title: 'Research' });
     }
   }
 
@@ -220,8 +219,6 @@ class App extends React.Component {
     if (nextProps.location.pathname === '/') {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
     } else if (nextProps.location.pathname === '/research-video-coding') {
-      this.setState({ title: 'Research' });
-    } else if (this.props.location.pathname === '/research-machine-learning') {
       this.setState({ title: 'Research' });
     }
   }
@@ -239,9 +236,22 @@ class App extends React.Component {
     // const { classes, location, intl } = this.props;
     // const { formatMessage } = intl;
 
-    const internalLinkButtons = (
+    const drawer = (
       <div>
-        <List dense>
+        <div className={classes.drawerHeader} >
+          <Link to="/" style={{ textDecoration: 'none' }} onClick={this.handleDrawerToggle}>
+            <div className={classes.drawerHeaderInner}>
+              <Typography type="display1" style={{ fontSize: '20px' }}>
+              Prof.Sam KWONG&#39;s
+            </Typography>
+              <Typography type="display1" style={{ fontSize: '20px' }}>
+              Research Group
+            </Typography>
+            </div>
+          </Link>
+        </div>
+        <Divider />
+        <MenuList dense>
           <MenuItem button selected={location.pathname === '/'} component={NavLink} to="/" onClick={this.handleDrawerToggle}>
             <ListItemText
               disableTypography
@@ -274,66 +284,18 @@ class App extends React.Component {
                 }
               />
             </MenuItem>
-            <MenuItem button className={classes.nested} selected={location.pathname === '/research-machine-learning'} component={NavLink} to="/research-machine-learning" onClick={this.handleDrawerToggle}>
-              <ListItemText
-                disableTypography
-                primary={
-                  <Typography type="body1" noWrap>
-                    Pattern Recognition and Machine Learning
-                   </Typography>
-                }
-              />
-            </MenuItem>
+            {/* <MenuItem button className={classes.nested} selected={location.pathname === '/research-machine-learning'} component={NavLink} to="/research-machine-learning" onClick={this.handleDrawerToggle}> */}
+            {/* <ListItemText */}
+            {/* disableTypography */}
+            {/* primary={ */}
+            {/* <Typography type="body1" noWrap> */}
+            {/* Pattern Recognition and Machine Learning */}
+            {/* </Typography> */}
+            {/* } */}
+            {/* /> */}
+            {/* </MenuItem> */}
           </Collapse>
-        </List>
-      </div>
-    );
-
-    const externalLinkButtons = (
-      <div>
-        {/* <List> */}
-        {/* <ListItem button onClick={this.handleClick}> */}
-        {/* <ListItemIcon> */}
-        {/* <InboxIcon /> */}
-        {/* </ListItemIcon> */}
-        {/* <ListItemText inset primary="Research" /> */}
-        {/* {this.state.subMenusOpen ? <ExpandLess /> : <ExpandMore />} */}
-        {/* </ListItem> */}
-        {/* <Collapse component="li" in={this.state.subMenusOpen} timeout="auto" unmountOnExit> */}
-        {/* <MenuItem button className={classes.nested} selected={location.pathname === '/features'} component={NavLink} to="/features" onClick={this.handleDrawerToggle}> */}
-        {/* <ListItemText inset primary={formatMessage(messages.drawerFeatures)} /> */}
-        {/* </MenuItem> */}
-        {/* </Collapse> */}
-        {/* </List> */}
-        {/* <MenuList> */}
-        {/* <MenuItem button component="a" href="https://git.io/wzx" target="_blank" onClick={this.handleDrawerToggle}> */}
-        {/* <ListItemIcon> */}
-        {/* <OpenInNew /> */}
-        {/* </ListItemIcon> */}
-        {/* <ListItemText primary={formatMessage(messages.resumeLink)} /> */}
-        {/* </MenuItem> */}
-        {/* </MenuList> */}
-      </div>
-    );
-
-    const drawer = (
-      <div>
-        <div className={classes.drawerHeader} >
-          <Link to="/" style={{ textDecoration: 'none' }} onClick={this.handleDrawerToggle}>
-            <div className={classes.drawerHeaderInner}>
-              <Typography type="display1" style={{ fontSize: '20px' }}>
-              Prof.Sam KWONG&#39;s
-            </Typography>
-              <Typography type="display1" style={{ fontSize: '20px' }}>
-              Research Group
-            </Typography>
-            </div>
-          </Link>
-        </div>
-        <Divider />
-        <List>{internalLinkButtons}</List>
-        <Divider />
-        <List>{externalLinkButtons}</List>
+        </MenuList>
       </div>
     );
 
@@ -397,7 +359,6 @@ class App extends React.Component {
                   <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/research-video-coding" component={ResearchVideoCodingPage} />
-                    <Route path="/research-machine-learning" component={ResearchMachineLearning} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>
