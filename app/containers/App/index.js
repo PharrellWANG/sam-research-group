@@ -378,7 +378,7 @@ class App extends React.Component {
           </Helmet>
           <Snackbar
             anchorOrigin={{
-              vertical: 'top',
+              vertical: 'bottom',
               horizontal: 'right',
             }}
             open={this.state.open}
