@@ -63,7 +63,7 @@ openSansObserver.load().then(() => {
 // Create redux store with history
 const initialState = {};
 const history = createHistory({
-  basename: '/sam-rg/', // e.g. domain.com/path-goes-here
+  basename: '/sam-research-group/', // e.g. domain.com/path-goes-here
 });
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');

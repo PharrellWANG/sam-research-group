@@ -4,7 +4,7 @@
   "background_color": "#fafafa",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "/sam-rg/",
+  "start_url": "/sam-research-group/",
   "icons": [
     {
       "src": "icon-72x72.png",
