@@ -2,8 +2,6 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
-
 
 const styles = (theme) => ({
   root: theme.mixins.gutters({
@@ -19,10 +17,9 @@ export class PageSubTitle extends React.Component { // eslint-disable-line react
     const { classes, title } = this.props;
     return (
       <div>
-        <Typography type="display1" component="h3" gutterBottom className={classes.root}>
+        <Typography type="display1" component="h3" className={classes.root}>
           {title}
         </Typography>
-        <Divider />
       </div>
     );
   }

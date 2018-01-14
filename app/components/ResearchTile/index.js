@@ -10,7 +10,7 @@ import Paper from 'material-ui/Paper';
 const styles = (theme) => ({
   root: theme.mixins.gutters({
     padding: 32,
-    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit,
   }),
   bullet: {
     display: 'inline-block',

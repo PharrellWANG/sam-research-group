@@ -13,7 +13,7 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
-import Paper from 'material-ui/Paper';
+// import Paper from 'material-ui/Paper';
 import PageSubTitle from 'components/PageSubTitle';
 // import Divider from 'material-ui/Divider';
 import ResearchTile from 'components/ResearchTile';
@@ -26,12 +26,12 @@ import statModelBasedFastAlgorithm from './stat-model-based-fast-algorithm.png';
 
 const styles = (theme) => ({
   root: theme.mixins.gutters({
-    paddingTop: 48,
-    marginTop: theme.spacing.unit * 3,
+    paddingTop: 12,
+    marginTop: theme.spacing.unit * 2,
   }),
   overview: theme.mixins.gutters({
-    paddingTop: 18,
-    marginTop: theme.spacing.unit * 3,
+    paddingTop: 2,
+    // marginTop: theme.spacing.unit * 3,
   }),
   leftAlignRow: {
     display: 'flex',
@@ -40,9 +40,39 @@ const styles = (theme) => ({
   dividerMarginBottom: {
     marginBottom: 20,
   },
-  paper: {
+  tableOfContents: {
     margin: theme.spacing.unit * 3,
-    padding: 24,
+    borderLeft: '4px solid #3F51B5',
+    paddingLeft: 12,
+    // padding: 8,
+  },
+  hashLink: {
+    color: '#000000',
+    '&:link': {
+      textDecoration: 'none',
+    },
+    '&:visited': {
+      textDecoration: 'none',
+      color: '#1db532',
+    },
+    '&:hover': {
+      textDecoration: 'none',
+      color: '#1db532',
+    },
+    '&:active': {
+      textDecoration: 'none',
+      // textDecoration: 'underline',
+      color: '#1db532',
+    },
+    sectionTitle: {
+      // paddingTop: 5,
+      // paddingBottom: 30,
+      marginBottom: 20,
+    },
+    sectionBody: {
+      marginTop: '20px',
+      // paddingTop: 30,
+    },
   },
 });
 
@@ -52,51 +82,50 @@ export class ResearchMachineLearning extends React.Component { // eslint-disable
     return (
       <div>
         <Helmet>
-          <title>Research Page - Video Coding Optimization</title>
-          <meta name="description" content="Feature page of React.js Boilerplate application" />
+          <title>Research - Video Coding Optimization</title>
+          <meta name="description" content="Research - Video Coding Optimization" />
         </Helmet>
         <PageSubTitle title="Video Coding Optimization" />
         <div>
           <Grid container spacing={24}>
             <Grid item xs={12} sm={12} md={12}>
-              <Paper className={classes.paper} elevation={10}>
+              <div className={classes.tableOfContents}>
                 <div className={classes.leftAlignRow} >
-                  <Typography type="headline" gutterBottom>
-                      Table of Contents
+                  <Typography type="display1" style={{ fontSize: 15, fontWeight: 550 }} gutterBottom>
+                      Contents
                     </Typography>
                 </div>
-                <Divider light className={classes.dividerMarginBottom} />
                 <div className={classes.leftAlignRow}>
                   <Typography type="body1" gutterBottom>
-                    <HashLink to="#overview">Overview</HashLink>
+                    <HashLink className={classes.hashLink} to="#overview">Overview</HashLink>
                   </Typography>
                 </div>
                 <div className={classes.leftAlignRow}>
                   <Typography type="body1" gutterBottom>
-                    <HashLink to="#RateControlOptimizations">Rate Control Optimizations</HashLink>
+                    <HashLink className={classes.hashLink} to="#RateControlOptimizations">Rate Control Optimizations</HashLink>
                   </Typography>
                 </div>
                 <div className={classes.leftAlignRow}>
                   <Typography type="body1" gutterBottom>
-                    <HashLink to="#RateDistortionandBitAllocationOptimization">Rate Distortion and Bit Allocation Optimization</HashLink>
+                    <HashLink className={classes.hashLink} to="#RateDistortionandBitAllocationOptimization">Rate Distortion and Bit Allocation Optimization</HashLink>
                   </Typography>
                 </div>
                 <div className={classes.leftAlignRow}>
                   <Typography type="body1" gutterBottom>
-                    <HashLink to="#LowComplexityVideoCoding">Low Complexity Video Coding</HashLink>
+                    <HashLink className={classes.hashLink} to="#LowComplexityVideoCoding">Low Complexity Video Coding</HashLink>
                   </Typography>
                 </div>
-              </Paper>
+              </div>
             </Grid>
           </Grid>
-          <Divider />
           <div className={classes.overview} id="overview">
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <Typography type="headline" component="h3" gutterBottom>
+                <Typography type="headline" component="h3" gutterBottom className={classes.sectionTitle}>
                   Overview
                 </Typography>
-                <Typography component="p" gutterBottom>
+                <Divider light className={classes.dividerMarginBottom} />
+                <Typography component="p" gutterBottom >
                   Since 2004, our research group has been working on optimization techniques for video coding, including MPEG-4, H.264/AVC, High Efficiency Video Coding (HEVC), Scalable Video Coding (SVC), Multiview Video Coding (MVC) and Three-Dimensional Video Coding (3DVC). The main focus has been on two key optimization problems of video coding, namely resource allocation optimization problems (e.g.,  and rate control optimization and rate-distortion optimization) and optimal decision making problems (e.g., efficient zero coefficient early determination, fast motion estimation and low complexity mode decision).
                 </Typography>
               </Grid>
@@ -108,6 +137,7 @@ export class ResearchMachineLearning extends React.Component { // eslint-disable
                 <Typography type="headline" component="h3" gutterBottom>
                   Rate Control Optimizations
                 </Typography>
+                <Divider light className={classes.dividerMarginBottom} />
               </Grid>
             </Grid>
             <ResearchTile
@@ -147,6 +177,7 @@ export class ResearchMachineLearning extends React.Component { // eslint-disable
                 <Typography type="headline" component="h3" gutterBottom>
                   Rate Distortion and Bit Allocation Optimization
                 </Typography>
+                <Divider light className={classes.dividerMarginBottom} />
               </Grid>
             </Grid>
             <ResearchTile
@@ -167,6 +198,7 @@ export class ResearchMachineLearning extends React.Component { // eslint-disable
                 <Typography type="headline" component="h3" gutterBottom>
                   Low Complexity Video Coding
                 </Typography>
+                <Divider light className={classes.dividerMarginBottom} />
               </Grid>
             </Grid>
             <ResearchTile

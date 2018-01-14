@@ -17,6 +17,9 @@ import HomePage from 'containers/HomePage/Loadable';
 import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
 // import ResearchMachineLearning from 'containers/ResearchMachineLearning/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Snackbar from 'material-ui/Snackbar';
+import CloseIcon from 'material-ui-icons/Close';
+
 // import Header from 'components/Header';
 import { injectIntl } from 'react-intl';
 import Drawer from 'material-ui/Drawer';
@@ -196,14 +199,44 @@ const styles = {
   nested: {
     paddingLeft: 5 * theme.spacing.unit,
   },
+  close: {
+    width: theme.spacing.unit * 4,
+    height: theme.spacing.unit * 4,
+  },
 };
 
 class App extends React.Component {
-  state = {
-    mobileOpen: false,
-    title: '',
-    subMenusOpen: true,
-  };
+  static secondsToTime(secs) {
+    const hours = Math.floor(secs / (60 * 60));
+
+    const divisorForMinutes = secs % (60 * 60);
+    const minutes = Math.floor(divisorForMinutes / 60);
+
+    const divisorForSeconds = divisorForMinutes % 60;
+    const seconds = Math.ceil(divisorForSeconds);
+
+    return {
+      h: hours,
+      m: minutes,
+      s: seconds,
+    };
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      time: {},
+      seconds: 8,
+      //
+      mobileOpen: false,
+      title: '',
+      subMenusOpen: true,
+      open: true,
+    };
+    this.timer = 0;
+    this.startTimer = this.startTimer.bind(this);
+    this.countDown = this.countDown.bind(this);
+  }
 
   // to render the component title at the initial rendering
   componentWillMount() {
@@ -212,6 +245,12 @@ class App extends React.Component {
     } else if (this.props.location.pathname === '/research-video-coding') {
       this.setState({ title: 'Research' });
     }
+    const timeLeftVar = App.secondsToTime(this.state.seconds);
+    this.setState({ time: timeLeftVar });
+  }
+
+  componentDidMount() {
+    this.startTimer();
   }
 
   // to render the component title at menus item switch
@@ -223,6 +262,26 @@ class App extends React.Component {
     }
   }
 
+  startTimer() {
+    if (this.timer === 0) {
+      this.timer = setInterval(this.countDown, 1000);
+    }
+  }
+
+  countDown() {
+    // Remove one second, set state so a re-render happens.
+    const seconds = this.state.seconds - 1;
+    this.setState({
+      time: App.secondsToTime(seconds),
+      seconds,
+    });
+
+    // Check if we're at zero.
+    if (seconds === 0) {
+      clearInterval(this.timer);
+    }
+  }
+
   handleClick = () => {
     this.setState({ subMenusOpen: !this.state.subMenusOpen });
   };
@@ -230,6 +289,14 @@ class App extends React.Component {
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
+
+  handleCloseOnSnackBar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ open: false });
+  }
 
   render() {
     const { classes, location } = this.props;
@@ -304,11 +371,41 @@ class App extends React.Component {
         <AppWrapper>
           <Reboot />
           <Helmet
-            titleTemplate="%s - React.js Boilerplate"
-            defaultTitle="React.js Boilerplate"
+            titleTemplate="%s - Prof.Sam KWONG's Research Group"
+            defaultTitle="Prof.Sam KWONG's Research Group"
           >
-            <meta name="description" content="A React.js Boilerplate application" />
+            <meta name="description" content="Prof.Sam KWONG's Research Group" />
           </Helmet>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={this.state.open}
+            autoHideDuration={this.state.seconds * 1000}
+            onClose={this.handleCloseOnSnackBar}
+            SnackbarContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">
+               Last updated: Jan 2018&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;hides in {this.state.time.s} s
+              {/* <div> */}
+              {/* <button onClick={this.startTimer}>Start</button> */}
+              {/* m: {this.state.time.m} s: {this.state.time.s} */}
+              {/* </div> */}
+            </span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleCloseOnSnackBar}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
           <div className={classes.root}>
             <div className={classes.appFrame}>
               <AppBar className={classes.appBar}>
