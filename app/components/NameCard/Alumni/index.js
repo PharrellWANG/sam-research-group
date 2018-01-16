@@ -1,4 +1,5 @@
 
+
 /* eslint-disable jsx-a11y/accessible-emoji,react/prop-types */
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
@@ -34,15 +35,8 @@ const styles = (theme) => ({
     paddingBottom: 16,
   },
   card: {
-    // width: 285,
-    // maxWidth: 285,
-    [theme.breakpoints.down('sm')]: {
-      width: 348,
-    },
-    [theme.breakpoints.up('md')]: {
-      maxWidth: 980,
-    },
-    // height: 380,
+    width: 348,
+    height: 380,
     paddingTop: 27,
   },
   media: {
@@ -67,7 +61,7 @@ export class PhdCandidateNameCard extends React.Component { // eslint-disable-li
    * The ``title`` prop is optional.
    */
   render() {
-    const { classes, img, personName, personTitle11, personTitle12, personTitle13, personTitle14, personTitle2, personTitle3, personTitle4, interests, email } = this.props;
+    const { classes, img, degree, personName, personPlace, personTitle, email, personalHomepage } = this.props;
     return (
       <div>
         <Card className={classes.card}>
@@ -86,47 +80,21 @@ export class PhdCandidateNameCard extends React.Component { // eslint-disable-li
             </div>
             <div className={classes.avatarRow}>
               <Typography type="caption" component="h2">
-                {personTitle11}
-              </Typography>
-            </div>
-            <div className={classes.avatarRow}>
-              <Typography type="caption" component="h2">
-                {personTitle12}
-              </Typography>
-            </div>
-            <div className={classes.avatarRow}>
-              <Typography type="caption" component="h2">
-                {personTitle13}
-              </Typography>
-            </div>
-            <div className={classes.avatarRow}>
-              <Typography type="caption" component="h2">
-                {personTitle14}
-              </Typography>
-            </div>
-            <div className={classes.avatarRow}>
-              <Typography type="caption" component="h2">
-                {personTitle2}
-              </Typography>
-            </div>
-            <div className={classes.avatarRow}>
-              <Typography type="caption" component="h2">
-                {personTitle3}
-              </Typography>
-            </div>
-            <div className={classes.avatarRow}>
-              <Typography type="caption" component="h2">
-                {personTitle4}
+                {degree}
               </Typography>
             </div>
             <Divider light className={classes.nameCardDivider} />
             <div>
-              <Typography type="body2">
-                Research Interests
+              <Typography type="caption" component="h2">
+                {personTitle}
               </Typography>
-              <Typography type="body1" gutterBottom>
-                {interests}
+            </div>
+            <div>
+              <Typography type="caption" component="h2">
+                {personPlace}
               </Typography>
+            </div>
+            <div>
               <Typography type="body2">
                 Email
               </Typography>
@@ -134,6 +102,16 @@ export class PhdCandidateNameCard extends React.Component { // eslint-disable-li
                 {email}
               </Typography>
             </div>
+            { personalHomepage &&
+            <div>
+              <Typography type="body2">
+                Personal Homepage
+              </Typography>
+              <Typography color="primary" component="a" href={`${personalHomepage}`}>
+                {personalHomepage}
+              </Typography>
+            </div>
+            }
           </CardContent>
         </Card>
       </div>

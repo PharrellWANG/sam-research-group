@@ -34,7 +34,7 @@ const styles = (theme) => ({
     paddingBottom: 16,
   },
   card: {
-    width: 285,
+    width: 348,
     // maxWidth: 250,
     // [theme.breakpoints.down('sm')]: {
     //   width: 200,
