@@ -19,6 +19,7 @@ import ResearchMachineLearning from 'containers/ResearchMachineLearningPage/Load
 import ResearchEC from 'containers/ResearchEvolutionaryComputationPage/Loadable';
 import Publications from 'containers/Publications/Loadable';
 import GroupMembers from 'containers/GroupMembers/Loadable';
+import Contacts from 'containers/Contacts/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import News from 'containers/News/Loadable';
 import Snackbar from 'material-ui/Snackbar';
@@ -258,6 +259,8 @@ class App extends React.Component {
       this.setState({ title: 'Publications' });
     } else if (this.props.location.pathname === '/news') {
       this.setState({ title: 'News' });
+    } else if (this.props.location.pathname === '/contacts') {
+      this.setState({ title: 'Contacts' });
     }
     const timeLeftVar = App.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
@@ -283,6 +286,8 @@ class App extends React.Component {
       this.setState({ title: 'Publications' });
     } else if (nextProps.location.pathname === '/news') {
       this.setState({ title: 'News' });
+    } else if (nextProps.location.pathname === '/contacts') {
+      this.setState({ title: 'Contacts' });
     }
   }
 
@@ -426,6 +431,16 @@ class App extends React.Component {
               }
             />
           </MenuItem>
+          <MenuItem button selected={location.pathname === '/contacts'} component={NavLink} to="/contacts" onClick={this.handleDrawerToggle}>
+            <ListItemText
+              disableTypography
+              primary={
+                <Typography type="body2">
+                  Contacts
+                </Typography>
+              }
+            />
+          </MenuItem>
         </MenuList>
       </div>
     );
@@ -525,6 +540,7 @@ class App extends React.Component {
                     <Route path="/group-members" component={GroupMembers} />
                     <Route path="/publications" component={Publications} />
                     <Route path="/news" component={News} />
+                    <Route path="/contacts" component={Contacts} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>
