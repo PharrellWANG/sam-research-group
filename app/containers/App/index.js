@@ -16,6 +16,8 @@ import { MuiThemeProvider, createMuiTheme, withStyles, withTheme } from 'materia
 import HomePage from 'containers/HomePage/Loadable';
 import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
 import ResearchMachineLearning from 'containers/ResearchMachineLearningPage/Loadable';
+import ResearchEC from 'containers/ResearchEvolutionaryComputationPage/Loadable';
+import GroupMembers from 'containers/GroupMembers/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Snackbar from 'material-ui/Snackbar';
 import CloseIcon from 'material-ui-icons/Close';
@@ -246,6 +248,10 @@ class App extends React.Component {
       this.setState({ title: 'Research' });
     } else if (this.props.location.pathname === '/research-machine-learning') {
       this.setState({ title: 'Research' });
+    } else if (this.props.location.pathname === '/research-evolutionary-computation') {
+      this.setState({ title: 'Research' });
+    } else if (this.props.location.pathname === '/group-members') {
+      this.setState({ title: 'Group Members' });
     }
     const timeLeftVar = App.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
@@ -263,6 +269,10 @@ class App extends React.Component {
       this.setState({ title: 'Research' });
     } else if (nextProps.location.pathname === '/research-machine-learning') {
       this.setState({ title: 'Research' });
+    } else if (nextProps.location.pathname === '/research-evolutionary-computation') {
+      this.setState({ title: 'Research' });
+    } else if (this.props.location.pathname === '/group-members') {
+      this.setState({ title: 'Group Members' });
     }
   }
 
@@ -365,7 +375,27 @@ class App extends React.Component {
              }
               />
             </MenuItem>
+            <MenuItem button className={classes.nested} selected={location.pathname === '/research-evolutionary-computation'} component={NavLink} to="/research-evolutionary-computation" onClick={this.handleDrawerToggle}>
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography type="body1" noWrap>
+             Evolutionary Computation
+             </Typography>
+             }
+              />
+            </MenuItem>
           </Collapse>
+          <MenuItem button selected={location.pathname === '/group-members'} component={NavLink} to="/group-members" onClick={this.handleDrawerToggle}>
+            <ListItemText
+              disableTypography
+              primary={
+                <Typography type="body2">
+                  Group Members
+                </Typography>
+              }
+            />
+          </MenuItem>
         </MenuList>
       </div>
     );
@@ -461,6 +491,8 @@ class App extends React.Component {
                     <Route exact path="/" component={HomePage} />
                     <Route path="/research-video-coding" component={ResearchVideoCodingPage} />
                     <Route path="/research-machine-learning" component={ResearchMachineLearning} />
+                    <Route path="/research-evolutionary-computation" component={ResearchEC} />
+                    <Route path="/group-members" component={GroupMembers} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>

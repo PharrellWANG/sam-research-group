@@ -15,7 +15,7 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+// import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
@@ -54,7 +54,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="Home page of Prof.Sam KWONG'S research group" />
         </Helmet>
         <div>
-          <Paper className={classes.root} elevation={4}>
+          <div className={classes.root}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
                 <img className={classes.imageAutoScale} src={samCsDepartment} alt="Sam - Department of Computer Science" />
@@ -71,7 +71,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 </Typography>
               </Grid>
             </Grid>
-          </Paper>
+          </div>
         </div>
       </article>
     );
