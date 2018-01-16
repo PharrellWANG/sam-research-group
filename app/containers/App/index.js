@@ -17,6 +17,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
 import ResearchMachineLearning from 'containers/ResearchMachineLearningPage/Loadable';
 import ResearchEC from 'containers/ResearchEvolutionaryComputationPage/Loadable';
+import Publications from 'containers/Publications/Loadable';
 import GroupMembers from 'containers/GroupMembers/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Snackbar from 'material-ui/Snackbar';
@@ -252,6 +253,8 @@ class App extends React.Component {
       this.setState({ title: 'Research' });
     } else if (this.props.location.pathname === '/group-members') {
       this.setState({ title: 'Group Members' });
+    } else if (this.props.location.pathname === '/publications') {
+      this.setState({ title: 'Publications' });
     }
     const timeLeftVar = App.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
@@ -271,8 +274,10 @@ class App extends React.Component {
       this.setState({ title: 'Research' });
     } else if (nextProps.location.pathname === '/research-evolutionary-computation') {
       this.setState({ title: 'Research' });
-    } else if (this.props.location.pathname === '/group-members') {
+    } else if (nextProps.location.pathname === '/group-members') {
       this.setState({ title: 'Group Members' });
+    } else if (nextProps.location.pathname === '/publications') {
+      this.setState({ title: 'Publications' });
     }
   }
 
@@ -396,6 +401,16 @@ class App extends React.Component {
               }
             />
           </MenuItem>
+          <MenuItem button selected={location.pathname === '/publications'} component={NavLink} to="/publications" onClick={this.handleDrawerToggle}>
+            <ListItemText
+              disableTypography
+              primary={
+                <Typography type="body2">
+                  Publications
+                </Typography>
+              }
+            />
+          </MenuItem>
         </MenuList>
       </div>
     );
@@ -493,6 +508,7 @@ class App extends React.Component {
                     <Route path="/research-machine-learning" component={ResearchMachineLearning} />
                     <Route path="/research-evolutionary-computation" component={ResearchEC} />
                     <Route path="/group-members" component={GroupMembers} />
+                    <Route path="/publications" component={Publications} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>
