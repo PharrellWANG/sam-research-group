@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji,react/prop-types */
 /*
- * ResearchMachineLearning
+ * ResearchVideoCoding
  *
  * List all the features
  */
@@ -76,7 +76,7 @@ const styles = (theme) => ({
   },
 });
 
-export class ResearchMachineLearning extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class ResearchVideoCoding extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { classes } = this.props;
     return (
@@ -229,4 +229,4 @@ export class ResearchMachineLearning extends React.Component { // eslint-disable
   }
 }
 
-export default withStyles(styles)(ResearchMachineLearning);
+export default withStyles(styles)(ResearchVideoCoding);

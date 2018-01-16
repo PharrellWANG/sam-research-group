@@ -14,4 +14,12 @@ if(scrolledY){
   //E.g.,  
   //window.scroll(0, scrolledY - 72);
 }
+
+**Note**:
+Something strange but acceptable:
+
+The above approach for scrolling with offset is not 
+effective in when developing the app using ``yarn start``;
+
+But it is effective when running the app using ``yarn start:production``.
 ```

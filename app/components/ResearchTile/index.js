@@ -33,11 +33,15 @@ const styles = (theme) => ({
 });
 
 export class ResearchTile extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  /**
+   * The ``title`` prop is optional.
+   */
   render() {
     const { classes, imageSrc, imageAlt, title, publications } = this.props;
     const bull = <span className={classes.bullet}>•</span>;
     return (
       <Paper className={classes.root}>
+        { title &&
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <div className={classes.indentRow}>
@@ -51,6 +55,7 @@ export class ResearchTile extends React.Component { // eslint-disable-line react
             </div>
           </Grid>
         </Grid>
+        }
         <Grid container spacing={24}>
           <Grid item xs={12} sm={4}>
             <img className={classes.imageAutoScale} src={imageSrc} alt={imageAlt} />

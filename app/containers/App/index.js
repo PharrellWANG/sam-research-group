@@ -15,7 +15,7 @@ import { Switch, Route, NavLink, withRouter, Link } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, withStyles, withTheme } from 'material-ui/styles';
 import HomePage from 'containers/HomePage/Loadable';
 import ResearchVideoCodingPage from 'containers/ResearchVideoCodingPage/Loadable';
-// import ResearchMachineLearning from 'containers/ResearchMachineLearning/Loadable';
+import ResearchMachineLearning from 'containers/ResearchMachineLearningPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Snackbar from 'material-ui/Snackbar';
 import CloseIcon from 'material-ui-icons/Close';
@@ -244,6 +244,8 @@ class App extends React.Component {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
     } else if (this.props.location.pathname === '/research-video-coding') {
       this.setState({ title: 'Research' });
+    } else if (this.props.location.pathname === '/research-machine-learning') {
+      this.setState({ title: 'Research' });
     }
     const timeLeftVar = App.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
@@ -258,6 +260,8 @@ class App extends React.Component {
     if (nextProps.location.pathname === '/') {
       this.setState({ title: this.props.intl.formatMessage(messages.drawerHome) });
     } else if (nextProps.location.pathname === '/research-video-coding') {
+      this.setState({ title: 'Research' });
+    } else if (nextProps.location.pathname === '/research-machine-learning') {
       this.setState({ title: 'Research' });
     }
   }
@@ -351,16 +355,16 @@ class App extends React.Component {
                 }
               />
             </MenuItem>
-            {/* <MenuItem button className={classes.nested} selected={location.pathname === '/research-machine-learning'} component={NavLink} to="/research-machine-learning" onClick={this.handleDrawerToggle}> */}
-            {/* <ListItemText */}
-            {/* disableTypography */}
-            {/* primary={ */}
-            {/* <Typography type="body1" noWrap> */}
-            {/* Pattern Recognition and Machine Learning */}
-            {/* </Typography> */}
-            {/* } */}
-            {/* /> */}
-            {/* </MenuItem> */}
+            <MenuItem button className={classes.nested} selected={location.pathname === '/research-machine-learning'} component={NavLink} to="/research-machine-learning" onClick={this.handleDrawerToggle}>
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography type="body1" noWrap>
+             Pattern Recognition and Machine Learning
+             </Typography>
+             }
+              />
+            </MenuItem>
           </Collapse>
         </MenuList>
       </div>
@@ -456,6 +460,7 @@ class App extends React.Component {
                   <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/research-video-coding" component={ResearchVideoCodingPage} />
+                    <Route path="/research-machine-learning" component={ResearchMachineLearning} />
                     <Route path="" component={NotFoundPage} />
                   </Switch>
                 </div>
